@@ -263,7 +263,7 @@ public class Controlador {
         if (nuevoArticulo.getFotoFile() == null) {
             nuevoArticulo.foto.setIcon(new javax.swing.ImageIcon(NvoArticulo.class.getClassLoader().getResource("ico.png")));
         } else {
-            nuevoArticulo.foto.setIcon(art.getIconForAbm(nuevoArticulo.foto.getWidth(), nuevoArticulo.getHeight()));
+            nuevoArticulo.foto.setIcon(art.getIconForAbm(nuevoArticulo.foto.getWidth(), nuevoArticulo.foto.getHeight()));
         }
 
     }
