@@ -40,7 +40,7 @@ public class Controlador {
     }
     
     ///Este metodo agrega los ActionListeners de los botones
-    public void Inicializar() {
+    public final void Inicializar() {
         principal.MantenimientoArticulosBtn.addActionListener((var evt) -> {
             MantenimientoArticulosBtn(evt);
         });
@@ -54,10 +54,10 @@ public class Controlador {
             NuevoBtn(evt);
         });
         this.nuevoArticulo.ConfirmarBtn.addActionListener((var evt) -> {
-            AgregarArticuloBaseBtn(evt);
+            ConfirmarArticuloBtn(evt);
         });
         this.nuevoArticulo.CancelarBtn.addActionListener((var evt) -> {
-            CancelarNuevoArtBtn(evt);
+            CancelarArticuloBtn(evt);
         });
         this.listadoArticulos.ModificarBtn.addActionListener((var evt) -> {
             ModificarBtn(evt);
@@ -195,7 +195,7 @@ public class Controlador {
         return Ok;
     }
 
-    private void AgregarArticuloBaseBtn(ActionEvent evt) {
+    private void ConfirmarArticuloBtn(ActionEvent evt) {
 
         if (Validar()) {
             Articulo articulo = new Articulo();
@@ -241,7 +241,7 @@ public class Controlador {
 
     }
 
-    private void CancelarNuevoArtBtn(ActionEvent evt) {
+    private void CancelarArticuloBtn(ActionEvent evt) {
         try {
             nuevoArticulo.setClosed(true);
         } catch (PropertyVetoException ex) {
