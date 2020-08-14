@@ -27,7 +27,7 @@ public class Main {
         ListadoArticulos la = new ListadoArticulos();
         NvoArticulo nvo = new NvoArticulo();
         Controlador control = new Controlador(p, la, nvo);
-        control.Iniciar();
+        control.Run();
         
 
     }

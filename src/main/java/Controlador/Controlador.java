@@ -30,10 +30,17 @@ public class Controlador {
     private final Mdi principal;
     private final ListadoArticulos listadoArticulos;
     private final NvoArticulo nuevoArticulo;
+
     public Controlador(Mdi principal, ListadoArticulos listadoArticulos, NvoArticulo nvoArt) {
         this.principal = principal;
         this.listadoArticulos = listadoArticulos;
         this.nuevoArticulo = nvoArt;
+        Inicializar();
+
+    }
+    
+    ///Este metodo agrega los ActionListeners de los botones
+    public void Inicializar() {
         principal.MantenimientoArticulosBtn.addActionListener((var evt) -> {
             MantenimientoArticulosBtn(evt);
         });
@@ -67,12 +74,12 @@ public class Controlador {
                 fc.setDialogTitle("Seleccionar archivo de imagen");
                 FileNameExtensionFilter formatos = new FileNameExtensionFilter("JPG, PNG y GIF", "JPG", "PNG", "GIF");
                 fc.setFileFilter(formatos);
-                if (fc.showOpenDialog(nvoArt) == JFileChooser.APPROVE_OPTION) {
+                if (fc.showOpenDialog(nuevoArticulo) == JFileChooser.APPROVE_OPTION) {
                     File archivo = new File(fc.getSelectedFile().toString());
                     ImageIcon img_icon = new ImageIcon(archivo.toString());
-                    Icon icono = new ImageIcon(img_icon.getImage().getScaledInstance(nvoArt.foto.getWidth(), nvoArt.foto.getHeight(), Image.SCALE_DEFAULT));
-                    nvoArt.foto.setIcon(icono);
-                    nvoArt.setFotofile(archivo);
+                    Icon icono = new ImageIcon(img_icon.getImage().getScaledInstance(nuevoArticulo.foto.getWidth(), nuevoArticulo.foto.getHeight(), Image.SCALE_DEFAULT));
+                    nuevoArticulo.foto.setIcon(icono);
+                    nuevoArticulo.setFotofile(archivo);
 
                 }
             }
@@ -80,10 +87,9 @@ public class Controlador {
 
     }
 
-    public void Iniciar() {
+    public void Run() {
         principal.setSize(1600, 900);
         principal.setVisible(true);
-
     }
 
     //////////////////////
@@ -167,17 +173,7 @@ public class Controlador {
         if (i != -1) {
             nuevoArticulo.setSize(800, 600);
             Articulo A = ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).getArticulo(i);
-            nuevoArticulo.Titulo.setText("Modificar Articulo");
-            nuevoArticulo.id_articulo.setText(String.valueOf(A.getId_articulo()));
-            nuevoArticulo.codigo.setText(String.valueOf(A.getCodigo()));
-            nuevoArticulo.descripcion.setText(A.getDescripcion());
-            nuevoArticulo.fecha_fabricacion.setText(A.getFecha_fabricacion());
-            nuevoArticulo.precio.setText(String.valueOf(A.getPrecio()));
-            nuevoArticulo.setFotofile(A.getFoto());
-            nuevoArticulo.id_articulo.setEditable(false);
-            principal.PanelPrincipal.add(nuevoArticulo);
-            nuevoArticulo.setVisible(true);
-            nuevoArticulo.foto.setIcon(A.getIconForAbm(nuevoArticulo.foto.getWidth(), nuevoArticulo.getHeight()));
+            ModoModificar(A);
 
         } else {
 
@@ -200,8 +196,7 @@ public class Controlador {
     }
 
     private void AgregarArticuloBaseBtn(ActionEvent evt) {
-        
-        
+
         if (Validar()) {
             Articulo articulo = new Articulo();
             articulo.setFoto(nuevoArticulo.getFotoFile());
@@ -211,12 +206,11 @@ public class Controlador {
             articulo.setPrecio(Float.parseFloat(nuevoArticulo.precio.getText()));
             articulo.setFecha_fabricacion(nuevoArticulo.fecha_fabricacion.getText());
             if (nuevoArticulo.getMode() == "I") {
-                
-                //Este metodo devuelve null si no existe un articulo con el mismo id 
+
+                //Este metodo devuelve null si no existe un articulo con el mismo id, si llegase a existir trae el articulo para cambiar los campos 
                 Articulo art = SQLArticulo.CheckExistente(articulo.getId_articulo());
                 ////////////////////////////////////////////////////////////////////
-                
-                System.out.println(art);
+
                 if (art == null) {
                     SQLArticulo.InsertarArticulo(articulo);
                     ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).AddArticulo(articulo);
@@ -227,18 +221,10 @@ public class Controlador {
                     }
                 } else {
                     JOptionPane.showMessageDialog(nuevoArticulo, "Ya existe un articulo con ese id", "error", JOptionPane.ERROR_MESSAGE);
-                    nuevoArticulo.setMode("M");
-                    nuevoArticulo.Titulo.setText("Modificar Articulo");
-                    nuevoArticulo.id_articulo.setText(String.valueOf(art.getId_articulo()));
-                    nuevoArticulo.codigo.setText(String.valueOf(art.getCodigo()));
-                    nuevoArticulo.descripcion.setText(art.getDescripcion());
-                    nuevoArticulo.fecha_fabricacion.setText(art.getFecha_fabricacion());
-                    nuevoArticulo.precio.setText(String.valueOf(art.getPrecio()));
-                    nuevoArticulo.setFotofile(art.getFoto());                   
-                    nuevoArticulo.id_articulo.setEditable(false);            
+                    ModoModificar(art);
                     nuevoArticulo.foto.setIcon(art.getIconForAbm(nuevoArticulo.getWidth(), nuevoArticulo.getHeight()));
                 }
-                
+
             } else if (nuevoArticulo.getMode() == "M") {
                 SQLArticulo.ModificarArticulo(articulo);
                 ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).SetArticulo(listadoArticulos.TablaArticulos.getSelectedRow(), articulo);
@@ -263,4 +249,22 @@ public class Controlador {
         }
     }
 
+    private void ModoModificar(Articulo art) {
+        nuevoArticulo.Titulo.setText("Modificar Articulo");
+        nuevoArticulo.id_articulo.setText(String.valueOf(art.getId_articulo()));
+        nuevoArticulo.codigo.setText(String.valueOf(art.getCodigo()));
+        nuevoArticulo.descripcion.setText(art.getDescripcion());
+        nuevoArticulo.fecha_fabricacion.setText(art.getFecha_fabricacion());
+        nuevoArticulo.precio.setText(String.valueOf(art.getPrecio()));
+        nuevoArticulo.setFotofile(art.getFoto());
+        nuevoArticulo.id_articulo.setEditable(false);
+        principal.PanelPrincipal.add(nuevoArticulo);
+        nuevoArticulo.setVisible(true);
+        if (nuevoArticulo.getFotoFile() == null) {
+            nuevoArticulo.foto.setIcon(new javax.swing.ImageIcon(NvoArticulo.class.getClassLoader().getResource("ico.png")));
+        } else {
+            nuevoArticulo.foto.setIcon(art.getIconForAbm(nuevoArticulo.foto.getWidth(), nuevoArticulo.getHeight()));
+        }
+
+    }
 }

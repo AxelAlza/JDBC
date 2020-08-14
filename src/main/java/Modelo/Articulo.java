@@ -1,6 +1,7 @@
 
 package Modelo;
 
+import java.awt.Image;
 import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -33,7 +34,13 @@ public class Articulo {
     }
 
   
-
+    public Icon getIconForAbm(int width, int height){
+        ImageIcon img_icon = new ImageIcon(foto.toString());
+        Icon icono = new ImageIcon(img_icon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+        
+        return icono;
+    }
+    
     public Icon getIconForTable() {
          ImageIcon img_icon = new ImageIcon(foto.toString());
          Icon icono = new ImageIcon(img_icon.getImage().getScaledInstance(50, 50, 1));

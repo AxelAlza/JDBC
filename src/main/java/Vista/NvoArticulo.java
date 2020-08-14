@@ -71,6 +71,7 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
         foto = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
 
         getContentPane().setLayout(new java.awt.BorderLayout(20, 20));
 
@@ -214,7 +215,7 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
         foto.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         foto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 33;
         gridBagConstraints.gridheight = 23;
@@ -231,9 +232,17 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Agregar Foto");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 20;
+        gridBagConstraints.gridx = 18;
         gridBagConstraints.gridy = 0;
         jPanel4.add(jLabel1, gridBagConstraints);
+
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 36;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 25;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        jPanel4.add(jSeparator5, gridBagConstraints);
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
 
@@ -275,6 +284,7 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     public javax.swing.JTextField precio;
     // End of variables declaration//GEN-END:variables
 
