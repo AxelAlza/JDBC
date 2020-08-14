@@ -15,16 +15,16 @@ import java.util.logging.Logger;
  *
  * @author Axel Alza
  */
-public class ConexionSql {
+public abstract class ConexionSql {
     /////Configurar conexion sql aca
-    private Connection con = null;
-    private final String puerto = "3306";
-    private final String server = "localhost:" + puerto;
-    private final String base = "empresa";
-    private final String user = "root";
-    private final String pass = "";
 
-    public Connection Conectar() {
+    public static Connection Conectar() {
+        Connection con = null;
+        String puerto = "3306";
+        String server = "localhost:" + puerto;
+        String base = "empresa";
+        String user = "root";
+        String pass = "Nadadenada1";
         try {
 
             con = DriverManager.getConnection("jdbc:mysql://"
@@ -37,25 +37,12 @@ public class ConexionSql {
         return con;
     }
 
-    public void Cerrar() throws SQLException {
-        if (con != null) {
-            if (!con.isClosed()) {
-                con.close();
-            }
-        }
-    }
+    public static class SQLArticulo extends ConexionSql {
 
-    public static class ControlaBase {
-
-        private final Connection con;
-
-        public ControlaBase(Connection con) {
-            this.con = con;
-        }
-
-        public Articulo CheckExistente(int id_articulo) {
+        public static Articulo CheckExistente(int id_articulo) {
             Articulo art = null;
             try {
+                Connection con = Conectar();
                 String Sql = "SELECT * FROM articulos WHERE id_articulo = ?";
                 PreparedStatement puntero;
                 puntero = con.prepareStatement(Sql);
@@ -78,13 +65,13 @@ public class ConexionSql {
             } catch (SQLException ex) {
                 Logger.getLogger(ConexionSql.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
+
             return art;
 
         }
 
-        public void EliminarArticulo(Articulo art) {
-
+        public static void EliminarArticulo(Articulo art) {
+            Connection con = Conectar();
             try {
                 String Sql = "DELETE FROM articulos WHERE id_articulo = ?";
                 PreparedStatement puntero;
@@ -98,8 +85,8 @@ public class ConexionSql {
 
         }
 
-        public void ModificarArticulo(Articulo art) {
-
+        public static void ModificarArticulo(Articulo art) {
+            Connection con = Conectar();
             try {
                 String sql = "UPDATE articulos set codigo = ?, foto = ? , descripcion = ?, precio = ?, fecha_fabricacion = ? where id_articulo = ?";
                 PreparedStatement puntero;
@@ -112,19 +99,19 @@ public class ConexionSql {
                 puntero.setInt(6, art.getId_articulo());
                 puntero.executeUpdate();
                 puntero.close();
-                this.con.close();
+                con.close();
             } catch (SQLException e) {
                 System.out.println(" ERROR AL EJECUTAR LA CONSULTA :: " + e.getMessage());
             }
 
         }
 
-        public void InsertarArticulo(Articulo art) {
-
+        public static void InsertarArticulo(Articulo art) {
+            Connection cn = Conectar();
             try {
                 String sql = "INSERT INTO articulos (id_articulo,codigo,foto,descripcion,precio,fecha_fabricacion) VAlUES (?,?,?,?,?,?)";
                 PreparedStatement puntero;
-                puntero = con.prepareStatement(sql);
+                puntero = cn.prepareStatement(sql);
                 puntero.setInt(1, art.getId_articulo());
                 puntero.setInt(2, art.getCodigo());
                 puntero.setString(3, art.getBase64foto());
@@ -133,27 +120,16 @@ public class ConexionSql {
                 puntero.setString(6, art.getFecha_fabricacion());
                 puntero.executeUpdate();
                 puntero.close();
-                this.con.close();
+                cn.close();
             } catch (SQLException e) {
                 System.out.println(" ERROR AL EJECUTAR LA CONSULTA :: " + e.getMessage());
             }
 
         }
 
-    }
-
-    public static class Listador {
-
-        private final Connection con;
-        private final ArrayList<Articulo> Articulos;
-
-        public Listador(Connection con) {
-            this.Articulos = new ArrayList<>();
-            this.con = con;
-        }
-
-        public ArrayList ListaArticulos() {
-
+        public static ArrayList ListaArticulos() {
+            Connection con = Conectar();
+            ArrayList<Articulo> Articulos = new ArrayList<>();
             try {
                 String sql = "SELECT * FROM articulos";
                 PreparedStatement puntero;

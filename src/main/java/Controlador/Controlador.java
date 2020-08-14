@@ -5,8 +5,7 @@ import Modelo.Articulo;
 
 import Modelo.TablaArticulo;
 import Permanencia.ConexionSql;
-import Permanencia.ConexionSql.ControlaBase;
-import Permanencia.ConexionSql.Listador;
+import Permanencia.ConexionSql.SQLArticulo;
 import Vista.ListadoArticulos;
 import Vista.Mdi;
 import Vista.NvoArticulo;
@@ -32,13 +31,12 @@ public class Controlador {
 
     private final Mdi principal;
     private final ListadoArticulos listadoArticulos;
-    private final ConexionSql sql;
+
     private final NvoArticulo nvoArt;
 
-    public Controlador(Mdi principal, ListadoArticulos listadoArticulos, ConexionSql sql, NvoArticulo nvoArt) {
+    public Controlador(Mdi principal, ListadoArticulos listadoArticulos, NvoArticulo nvoArt) {
         this.principal = principal;
         this.listadoArticulos = listadoArticulos;
-        this.sql = sql;
         this.nvoArt = nvoArt;
         principal.MantenimientoArticulosBtn.addActionListener((var evt) -> {
             MantenimientoArticulosBtn(evt);
@@ -106,9 +104,7 @@ public class Controlador {
         listadoArticulos.setSize(800, 600);
         principal.PanelPrincipal.add(listadoArticulos);
         listadoArticulos.setResizable(true);
-        Listador list;
-        list = new ConexionSql.Listador(sql.Conectar());
-        TablaArticulo tbl = new TablaArticulo(list.ListaArticulos());
+        TablaArticulo tbl = new TablaArticulo(SQLArticulo.ListaArticulos());
         listadoArticulos.TablaArticulos.setModel(tbl);
         listadoArticulos.setVisible(true);
 
@@ -122,8 +118,8 @@ public class Controlador {
         if (listadoArticulos.TablaArticulos.getSelectedRow() != -1) {
             int i = listadoArticulos.TablaArticulos.getSelectedRow();
             Articulo A = ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).getArticulo(i);
-            ControlaBase CtrlB = new ConexionSql.ControlaBase(sql.Conectar());
-            CtrlB.EliminarArticulo(A);
+            SQLArticulo.EliminarArticulo(A);
+
             ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).DelArticulo(i);
         } else {
             JOptionPane.showMessageDialog(listadoArticulos, "No se selecciono ningun articulo", "Error", JOptionPane.ERROR_MESSAGE);
@@ -220,13 +216,12 @@ public class Controlador {
             articulo.setDescripcion(nvoArt.descripcion.getText());
             articulo.setPrecio(Float.parseFloat(nvoArt.precio.getText()));
             articulo.setFecha_fabricacion(nvoArt.fecha_fabricacion.getText());
-            ControlaBase CtrlB = new ConexionSql.ControlaBase(sql.Conectar());
             if (nvoArt.getMode() == "I") {
 
-                Articulo art = CtrlB.CheckExistente(articulo.getId_articulo());
+                Articulo art = SQLArticulo.CheckExistente(articulo.getId_articulo());
                 System.out.println(art);
                 if (art == null) {
-                    CtrlB.InsertarArticulo(articulo);
+                    SQLArticulo.InsertarArticulo(articulo);
                     ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).AddArticulo(articulo);
                     try {
                         nvoArt.setClosed(true);
@@ -249,7 +244,7 @@ public class Controlador {
                     nvoArt.foto.setIcon(icono);
                 }
             } else if (nvoArt.getMode() == "M") {
-                CtrlB.ModificarArticulo(articulo);
+                SQLArticulo.ModificarArticulo(articulo);
                 ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).SetArticulo(listadoArticulos.TablaArticulos.getSelectedRow(), articulo);
                 try {
                     nvoArt.setClosed(true);

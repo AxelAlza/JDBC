@@ -1,7 +1,6 @@
 package Main;
 
 import Controlador.Controlador;
-import Permanencia.ConexionSql;
 import Vista.ListadoArticulos;
 import Vista.Mdi;
 import Vista.NvoArticulo;
@@ -23,11 +22,11 @@ public class Main {
         }
 
         
-        ConexionSql c = new ConexionSql();
+      
         Mdi p = new Mdi();
         ListadoArticulos la = new ListadoArticulos();
         NvoArticulo nvo = new NvoArticulo();
-        Controlador control = new Controlador(p, la, c, nvo);
+        Controlador control = new Controlador(p, la, nvo);
         control.Iniciar();
         
 
