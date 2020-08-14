@@ -1,5 +1,5 @@
 
-package Vista;
+package Vistas.Articulos;
 
 /**
  *

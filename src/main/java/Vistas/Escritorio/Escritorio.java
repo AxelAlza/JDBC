@@ -1,16 +1,16 @@
 
-package Vista;
+package Vistas.Escritorio;
 
 /**
  *
  * @author Axel Alza
  */
-public class Mdi extends javax.swing.JFrame {
+public class Escritorio extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public Mdi() {
+    public Escritorio() {
         initComponents();
     }
 

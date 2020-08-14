@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vistas.Articulos;
 
 import java.io.File;
 
@@ -11,7 +11,7 @@ import java.io.File;
  *
  * @author Axel Alza
  */
-public class NvoArticulo extends javax.swing.JInternalFrame {
+public class NuevoArticulo extends javax.swing.JInternalFrame {
 
     public String mode;
     public File FotoFile;
@@ -32,7 +32,7 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
         return mode;
     }
 
-    public NvoArticulo() {
+    public NuevoArticulo() {
         initComponents();
 
     }
@@ -47,7 +47,6 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jSeparator3 = new javax.swing.JSeparator();
         Titulo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         ConfirmarBtn = new javax.swing.JButton();
@@ -191,7 +190,7 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanel3.add(precio, gridBagConstraints);
 
-        fecha_fabricacion.setText("dd/mm/yyyy");
+        fecha_fabricacion.setToolTipText("Formato: dias/mes/año");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
@@ -209,7 +208,7 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
 
         foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        foto.setIcon(new javax.swing.ImageIcon(NvoArticulo.class.getClassLoader().getResource("ico.png")));
+        foto.setIcon(new javax.swing.ImageIcon(NuevoArticulo.class.getClassLoader().getResource("ico.png")));
         foto.setAlignmentX(2.0F);
         foto.setAlignmentY(2.0F);
         foto.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -282,7 +281,6 @@ public class NvoArticulo extends javax.swing.JInternalFrame {
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     public javax.swing.JTextField precio;
