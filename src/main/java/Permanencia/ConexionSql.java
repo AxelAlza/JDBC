@@ -1,6 +1,6 @@
 package Permanencia;
 
-import Modelo.Articulo;
+import Modelo.Articulo.Articulo;
 import Modelo.ProcesadorFotos;
 import java.sql.Connection;
 import java.sql.DriverManager;

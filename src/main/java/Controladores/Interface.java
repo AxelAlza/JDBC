@@ -13,8 +13,6 @@ public interface Interface {
     final static Escritorio principal = new Escritorio();
     final static ListadoArticulos listadoArticulos = new ListadoArticulos();
     final static NuevoArticulo nuevoArticulo = new NuevoArticulo();
-   
-
     public void Inicializar();
 
 }

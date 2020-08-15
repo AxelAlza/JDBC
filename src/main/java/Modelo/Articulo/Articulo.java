@@ -1,5 +1,6 @@
-package Modelo;
+package Modelo.Articulo;
 
+import Modelo.ProcesadorFotos;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.Icon;

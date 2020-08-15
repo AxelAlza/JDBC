@@ -6,8 +6,8 @@
 package Controladores.Articulo;
 
 import Controladores.Interface;
-import Modelo.Articulo;
-import Modelo.TablaArticulo;
+import Modelo.Articulo.Articulo;
+import Modelo.Articulo.TablaArticulo;
 import Permanencia.ConexionSql;
 import Vistas.Articulos.NuevoArticulo;
 import java.awt.event.ActionEvent;

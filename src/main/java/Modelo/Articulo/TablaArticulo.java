@@ -1,5 +1,6 @@
-package Modelo;
+package Modelo.Articulo;
 
+import Modelo.Articulo.Articulo;
 import java.util.ArrayList;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;

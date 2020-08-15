@@ -6,7 +6,7 @@
 package Controladores.Escritorio;
 
 import Controladores.Interface;
-import Modelo.TablaArticulo;
+import Modelo.Articulo.TablaArticulo;
 import Permanencia.ConexionSql;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyVetoException;
