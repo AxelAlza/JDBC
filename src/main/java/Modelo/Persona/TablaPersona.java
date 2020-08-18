@@ -205,11 +205,7 @@ public class TablaPersona extends AbstractTableModel {
 
     public void setMode(Boolean b) {
         mode = b;
-        fireTableDataChanged();
-    }
-
-    public void fireTableDataChanged() {
-        fireTableChanged(new TableModelEvent(this));
+        fireTableStructureChanged();
     }
 
 }

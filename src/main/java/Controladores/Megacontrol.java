@@ -8,25 +8,28 @@ package Controladores;
 import Controladores.Articulo.ControladorListadoArticulos;
 import Controladores.Articulo.ControladorNvoArticulo;
 import Controladores.Escritorio.ControladorEscritorio;
+import Controladores.Personas.ControladorListadoPersonas;
 
 /**
  *
  * @author Axel Alza
  */
 public class Megacontrol {
-    
+
     ControladorNvoArticulo CtrlN;
     ControladorEscritorio CtrlE;
     ControladorListadoArticulos CtrlL;
-    
-    public Megacontrol(){
+    ControladorListadoPersonas CtrlP;
+
+    public Megacontrol() {
         this.CtrlL = new ControladorListadoArticulos();
         this.CtrlE = new ControladorEscritorio();
         this.CtrlN = new ControladorNvoArticulo();
-        
+        this.CtrlP = new ControladorListadoPersonas();
+
     }
-    
-    public void Run(){
-     CtrlE.run();
+
+    public void Run() {
+        CtrlE.run();
     }
 }

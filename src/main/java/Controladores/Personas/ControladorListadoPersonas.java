@@ -5,10 +5,36 @@
  */
 package Controladores.Personas;
 
+import Controladores.Interface;
+import Modelo.Persona.TablaPersona;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.event.TableModelEvent;
+
 /**
  *
  * @author Axel Alza
  */
-public class ControladorListadoPersonas {
-    
+public final class ControladorListadoPersonas implements Interface {
+
+    public ControladorListadoPersonas() {
+        Inicializar();
+    }
+
+    @Override
+    public void Inicializar() {
+        listadoPersonas.PersonasComboBox.addItemListener((ItemEvent e) -> {
+            var combo = listadoPersonas.PersonasComboBox.getModel().getSelectedItem().toString();
+            if ("Personas".equals(combo)) {
+                ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).setMode(Boolean.TRUE);
+                System.out.println("Seleccione persona");
+
+            } else {
+                ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).setMode(Boolean.FALSE);
+                System.out.println("Seleccione empleado");
+            }
+
+        });
+    }
+
 }

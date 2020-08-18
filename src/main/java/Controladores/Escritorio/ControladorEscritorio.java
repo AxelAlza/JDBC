@@ -9,7 +9,6 @@ import Controladores.Interface;
 import Modelo.Articulo.TablaArticulo;
 import Modelo.Persona.TablaPersona;
 import Permanencia.ConexionSql;
-import Vistas.Personas.ListadoPersonas;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -64,10 +63,13 @@ public final class ControladorEscritorio implements Interface {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
         listadoPersonas.setSize(800, 600);
+       
         principal.PanelPrincipal.add(listadoPersonas);
         listadoPersonas.setResizable(true);
         TablaPersona tbl = new TablaPersona(ConexionSql.SQLArticulo.ListaEmpleados(), ConexionSql.SQLArticulo.ListaPersonas());
+        tbl.setMode(Boolean.TRUE);
         listadoPersonas.TablaPersonas.setModel(tbl);
+        
         listadoPersonas.setVisible(true);
 
     }

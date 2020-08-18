@@ -106,8 +106,4 @@ public class TablaArticulo extends AbstractTableModel {
         return articulo;
     }
 
-    public void fireTableDataChanged() {
-        fireTableChanged(new TableModelEvent(this));
-    }
-
 }
