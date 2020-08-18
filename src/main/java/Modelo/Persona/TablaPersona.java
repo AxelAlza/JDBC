@@ -114,7 +114,7 @@ public class TablaPersona extends AbstractTableModel {
                     ret = per.get(row).getIconForTable();
                     break;
                 case 3:
-                    ret = MessageFormat.format("{0} {0} {0} {0}", per.get(row).getPrimer_nombre(), per.get(row).getSegundo_nombre(), per.get(row).getPrimer_apellido(), per.get(row).getSegundo_apellido());
+                    ret = MessageFormat.format("{0} {1} {2} {3}", per.get(row).getPrimer_nombre(), per.get(row).getSegundo_nombre(), per.get(row).getPrimer_apellido(), per.get(row).getSegundo_apellido());
                     break;
                 case 4:
                     ret = per.get(row).getTelefono();
@@ -135,7 +135,7 @@ public class TablaPersona extends AbstractTableModel {
                     ret = emp.get(row).getIconForTable();
                     break;
                 case 3:
-                    ret = MessageFormat.format("{0} {0} {0} {0}", emp.get(row).getPrimer_nombre(), emp.get(row).getSegundo_nombre(), emp.get(row).getPrimer_apellido(), emp.get(row).getSegundo_apellido());
+                    ret = MessageFormat.format("{0} {1} {2} {3}", emp.get(row).getPrimer_nombre(), emp.get(row).getSegundo_nombre(), emp.get(row).getPrimer_apellido(), emp.get(row).getSegundo_apellido());
                     break;
                 case 4:
                     ret = emp.get(row).getTelefono();
@@ -148,7 +148,7 @@ public class TablaPersona extends AbstractTableModel {
                     break;
                 case 7:
                     TipoEmpleado tipo = emp.get(row).getTipoEmpleado();
-                    ret = MessageFormat.format("{0} {0}", tipo.getId_tipo_empleado(), tipo.getTipo_empleado());
+                    ret = MessageFormat.format("{0} {1}", tipo.getId_tipo_empleado(), tipo.getTipo_empleado());
                     break;
             }
         }

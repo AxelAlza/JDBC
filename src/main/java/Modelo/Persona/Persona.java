@@ -26,9 +26,23 @@ public class Persona {
     private String segundo_apellido;
     private int telefono;
     private String direccion;
-    
-    public Persona(){}
+
+    public Persona() {
+    }
+
     public Persona(int id_persona, int cedula, File foto, String primer_nombre, String segundo_nombre, String primer_apellido, String segundo_apellido, int telefono, String direccion) {
+        if (primer_nombre == null) {
+            primer_nombre = "";
+        }
+        if (segundo_nombre == null) {
+            segundo_nombre = "";
+        }
+        if (primer_apellido == null) {
+            primer_apellido = "";
+        }
+        if (segundo_apellido == null) {
+            segundo_apellido = "";
+        }
         this.id_persona = id_persona;
         this.cedula = cedula;
         this.foto = foto;
@@ -82,6 +96,7 @@ public class Persona {
     }
 
     public String getPrimer_nombre() {
+
         return primer_nombre;
     }
 
