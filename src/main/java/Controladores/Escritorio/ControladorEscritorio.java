@@ -7,7 +7,9 @@ package Controladores.Escritorio;
 
 import Controladores.Interface;
 import Modelo.Articulo.TablaArticulo;
+import Modelo.Persona.TablaPersona;
 import Permanencia.ConexionSql;
+import Vistas.Personas.ListadoPersonas;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -25,14 +27,18 @@ public final class ControladorEscritorio implements Interface {
 
     @Override
     public final void Inicializar() {
-        this.principal.MantenimientoArticulosBtn.addActionListener((var evt) -> {
+        ControladorEscritorio.principal.MantenimientoArticulosBtn.addActionListener((var evt) -> {
             MantenimientoArticulosBtn(evt);
         });
+        ControladorEscritorio.principal.MantenimientoPersonasBtn.addActionListener((var evt) -> {
+            MantenimientoPersonasBtn(evt);
+        });
+
     }
-    
-    public void run(){
-        this.principal.setSize(1600, 900);
-        this.principal.setVisible(true);
+
+    public void run() {
+        ControladorEscritorio.principal.setSize(1600, 900);
+        ControladorEscritorio.principal.setVisible(true);
     }
 
     private void MantenimientoArticulosBtn(ActionEvent evt) {
@@ -51,4 +57,18 @@ public final class ControladorEscritorio implements Interface {
 
     }
 
+    private void MantenimientoPersonasBtn(ActionEvent evt) {
+        try {
+            listadoPersonas.setClosed(false);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        listadoPersonas.setSize(800, 600);
+        principal.PanelPrincipal.add(listadoPersonas);
+        listadoPersonas.setResizable(true);
+        TablaPersona tbl = new TablaPersona(ConexionSql.SQLArticulo.ListaEmpleados(), ConexionSql.SQLArticulo.ListaPersonas());
+        listadoPersonas.TablaPersonas.setModel(tbl);
+        listadoPersonas.setVisible(true);
+
+    }
 }

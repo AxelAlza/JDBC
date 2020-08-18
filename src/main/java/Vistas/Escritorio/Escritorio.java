@@ -27,6 +27,7 @@ public class Escritorio extends javax.swing.JFrame {
         MenuBar = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
         MantenimientoArticulosBtn = new javax.swing.JMenuItem();
+        MantenimientoPersonasBtn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +54,9 @@ public class Escritorio extends javax.swing.JFrame {
         });
         Menu.add(MantenimientoArticulosBtn);
 
+        MantenimientoPersonasBtn.setText("Personas");
+        Menu.add(MantenimientoPersonasBtn);
+
         MenuBar.add(Menu);
 
         setJMenuBar(MenuBar);
@@ -70,6 +74,7 @@ public class Escritorio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenuItem MantenimientoArticulosBtn;
+    public javax.swing.JMenuItem MantenimientoPersonasBtn;
     public javax.swing.JMenu Menu;
     private javax.swing.JMenuBar MenuBar;
     public javax.swing.JDesktopPane PanelPrincipal;

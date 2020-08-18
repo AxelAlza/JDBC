@@ -1,6 +1,9 @@
 package Permanencia;
 
 import Modelo.Articulo.Articulo;
+import Modelo.Persona.Empleado;
+import Modelo.Persona.Persona;
+import Modelo.Persona.TipoEmpleado;
 import Modelo.ProcesadorFotos;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +19,6 @@ import java.util.logging.Logger;
  * @author Axel Alza
  */
 public abstract class ConexionSql {
-    /////Configurar conexion sql aca
 
     public static Connection Conectar() {
         Connection con = null;
@@ -125,6 +127,78 @@ public abstract class ConexionSql {
                 System.out.println(" ERROR AL EJECUTAR LA CONSULTA :: " + e.getMessage());
             }
 
+        }
+
+        public static ArrayList ListaEmpleados() {
+            Connection con = Conectar();
+            var empleados = new ArrayList<Empleado>();
+            try {
+
+                String sql = "SELECT * FROM personas inner join empleados on personas.id_persona = empleados.id_persona inner join tipos_empleados on empleados.id_tipo = tipos_empleados.id_tipo_empleado;";
+                PreparedStatement puntero;
+                puntero = con.prepareStatement(sql);
+                ResultSet res = puntero.executeQuery();
+                while (res.next()) {
+                    Empleado empl = new Empleado(
+                            res.getInt("id_empleado"),
+                            new TipoEmpleado(res.getInt("id_tipo_empleado"), res.getString("tipo_empleado")),
+                            res.getInt("sueldoMens"),
+                            res.getInt("id_persona"),
+                            res.getInt("cedula"),
+                            ProcesadorFotos.Convertir_Base64String_a_imagen(res.getString("foto")),
+                            res.getString("primer_nombre"),
+                            res.getString("segundo_nombre"),
+                            res.getString("primer_apellido"),
+                            res.getString("segundo_apellido"),
+                            res.getInt("telefono"),
+                            res.getString("direccion")
+                    );
+                    empleados.add(empl);
+                }
+
+                puntero.close();
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.out.println(" ERROR AL EJECUTAR LA CONSULTA :: " + e.getMessage());
+            }
+
+            return empleados;
+        }
+
+        public static ArrayList ListaPersonas() {
+            var personas = new ArrayList<Persona>();
+            Connection con = Conectar();
+            try {
+                String sql = "SELECT * FROM personas";
+                PreparedStatement puntero;
+                puntero = con.prepareStatement(sql);
+                ResultSet res = puntero.executeQuery();
+                while (res.next()) {
+                    Persona pers = new Persona(
+                            res.getInt("id_persona"),
+                            res.getInt("cedula"),
+                            ProcesadorFotos.Convertir_Base64String_a_imagen(res.getString("foto")),
+                            res.getString("primer_nombre"),
+                            res.getString("segundo_nombre"),
+                            res.getString("primer_apellido"),
+                            res.getString("segundo_apellido"),
+                            res.getInt("telefono"),
+                            res.getString("direccion")
+                    );
+                    personas.add(pers);
+                }
+
+                puntero.close();
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.out.println(" ERROR AL EJECUTAR LA CONSULTA :: " + e.getMessage());
+            }
+
+            return personas;
         }
 
         public static ArrayList ListaArticulos() {

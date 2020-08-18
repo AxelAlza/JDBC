@@ -21,19 +21,20 @@ public class ProcesadorFotos {
     public static File Convertir_Base64String_a_imagen(String base64String) {
 
         File archivo_salida;
-        if (!base64String.isBlank()) {
-            archivo_salida = new File(".", base64String.substring(40, 50) + ".png");
-        } else {
+        if (base64String == null || base64String.isBlank()) {
             archivo_salida = new File(".", "null.png");
-        }
-        try {
+        } else {
+            archivo_salida = new File(".", base64String.substring(40, 50) + ".png");
+            try {
 
-            byte[] decodedBytes = Base64.getDecoder().decode(base64String);
-            FileUtils.writeByteArrayToFile(archivo_salida, decodedBytes);
+                byte[] decodedBytes = Base64.getDecoder().decode(base64String);
+                FileUtils.writeByteArrayToFile(archivo_salida, decodedBytes);
 
-        } catch (IOException e) {
-            System.out.println("Todo mal: " + e.getMessage());
+            } catch (IOException e) {
+                System.out.println("Todo mal: " + e.getMessage());
+            }
         }
+
         return archivo_salida;
 
     }

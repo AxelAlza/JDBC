@@ -10,6 +10,7 @@ package Modelo.Persona;
  * @author Axel Alza
  */
 public class TipoEmpleado {
+
     int id_tipo_empleado;
     String tipo_empleado;
 
@@ -33,5 +34,5 @@ public class TipoEmpleado {
     public void setTipo_empleado(String tipo_empleado) {
         this.tipo_empleado = tipo_empleado;
     }
-    
+
 }

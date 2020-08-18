@@ -5,7 +5,6 @@
  */
 package Modelo.Persona;
 
-import Modelo.Persona.Persona;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.event.TableModelEvent;
