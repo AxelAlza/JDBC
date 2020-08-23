@@ -67,10 +67,8 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
-        foto = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
+        foto = new javax.swing.JLabel();
 
         getContentPane().setLayout(new java.awt.BorderLayout(20, 20));
 
@@ -202,10 +200,17 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         jPanel2.add(jSeparator1, java.awt.BorderLayout.PAGE_START);
         jPanel2.add(jSeparator2, java.awt.BorderLayout.PAGE_END);
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         java.awt.GridBagLayout jPanel4Layout = new java.awt.GridBagLayout();
-        jPanel4Layout.columnWidths = new int[] {0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0};
-        jPanel4Layout.rowHeights = new int[] {0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0};
+        jPanel4Layout.columnWidths = new int[] {0};
+        jPanel4Layout.rowHeights = new int[] {0, 20, 0};
         jPanel4.setLayout(jPanel4Layout);
+
+        jLabel1.setText("Agregar Foto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        jPanel4.add(jLabel1, gridBagConstraints);
 
         foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         foto.setIcon(new javax.swing.ImageIcon(NuevoArticulo.class.getClassLoader().getResource("ico.png")));
@@ -214,34 +219,14 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         foto.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         foto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 33;
-        gridBagConstraints.gridheight = 23;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel4.add(foto, gridBagConstraints);
-
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 25;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        jPanel4.add(jSeparator4, gridBagConstraints);
-
-        jLabel1.setText("Agregar Foto");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 18;
-        gridBagConstraints.gridy = 0;
-        jPanel4.add(jLabel1, gridBagConstraints);
-
-        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 36;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 25;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        jPanel4.add(jSeparator5, gridBagConstraints);
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 5.0;
+        jPanel4.add(foto, gridBagConstraints);
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
 
@@ -281,8 +266,6 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     public javax.swing.JTextField precio;
     // End of variables declaration//GEN-END:variables
 

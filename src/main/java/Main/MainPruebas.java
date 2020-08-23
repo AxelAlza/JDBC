@@ -5,12 +5,9 @@
  */
 package Main;
 
-import Modelo.Persona.ComboBoxTipoEmpleadoModel;
-import Permanencia.ConexionSql;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -37,12 +34,11 @@ public class MainPruebas {
 
         Container contentPane = frame.getContentPane();
         contentPane.add(comboBox, BorderLayout.NORTH);
-        btn1.addActionListener((var e) -> {
-            ComboBoxTipoEmpleadoModel model = new ComboBoxTipoEmpleadoModel();
-            comboBox.setModel(model);
 
+        btn1.addActionListener((var e) -> {
+            System.out.println(comboBox.getModel().getSelectedItem());
         });
-        contentPane.add(btn1,BorderLayout.SOUTH);
+        contentPane.add(btn1, BorderLayout.SOUTH);
         frame.setSize(300, 225);
         frame.setVisible(true);
 

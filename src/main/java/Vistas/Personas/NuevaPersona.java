@@ -5,7 +5,6 @@
  */
 package Vistas.Personas;
 
-import Modelo.Persona.ComboBoxTipoEmpleadoModel;
 import java.io.File;
 
 /**
@@ -81,7 +80,7 @@ public class NuevaPersona extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         id_empleado = new javax.swing.JTextField();
-        ComboBox = new javax.swing.JComboBox(new ComboBoxTipoEmpleadoModel());
+        ComboBox = new javax.swing.JComboBox();
         sueldoMens = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();

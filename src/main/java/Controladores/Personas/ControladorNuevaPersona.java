@@ -6,7 +6,6 @@
 package Controladores.Personas;
 
 import Controladores.Interface;
-import Modelo.Persona.ComboBoxTipoEmpleadoModel;
 import Modelo.Persona.Empleado;
 import Modelo.Persona.Persona;
 import Modelo.Persona.TipoEmpleado;
@@ -19,6 +18,7 @@ import java.beans.PropertyVetoException;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -37,7 +37,7 @@ public final class ControladorNuevaPersona implements Interface {
 
     @Override
     public void Inicializar() {
-
+        nuevaPersona.ComboBox.setModel(new DefaultComboBoxModel(ConexionSql.SQL.ListaTipoEmpleados().toArray()));
         nuevaPersona.Formulario2.setVisible(false);
         nuevaPersona.isEmpleado.addActionListener((var evt) -> {
             IsEmpleado(evt);
@@ -99,8 +99,6 @@ public final class ControladorNuevaPersona implements Interface {
     }
 
     private void IsEmpleado(ActionEvent evt) {
-        var model = new ComboBoxTipoEmpleadoModel();
-        nuevaPersona.ComboBox.setModel(model);
         if (nuevaPersona.isEmpleado.isSelected()) {
             nuevaPersona.Formulario2.setVisible(true);
             nuevaPersona.Formulario2.setEnabled(true);

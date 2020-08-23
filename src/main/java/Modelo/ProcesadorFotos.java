@@ -21,7 +21,7 @@ public class ProcesadorFotos {
     public static File Convertir_Base64String_a_imagen(String base64String) {
 
         File archivo_salida;
-        if (base64String == null || base64String.isBlank()) {
+        if (base64String == null || base64String.isEmpty()) {
             archivo_salida = new File(".", "null.png");
         } else {
             archivo_salida = new File(".", base64String.substring(40, 50) + ".png");

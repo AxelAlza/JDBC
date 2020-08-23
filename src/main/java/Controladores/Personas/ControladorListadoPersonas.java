@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controladores.Personas;
+
 import Controladores.Interface;
 import Modelo.Persona.Empleado;
 import Modelo.Persona.Persona;
@@ -25,11 +26,11 @@ import javax.swing.JTextField;
  * @author Axel Alza
  */
 public final class ControladorListadoPersonas implements Interface {
-    
+
     public ControladorListadoPersonas() {
         Inicializar();
     }
-    
+
     @Override
     public void Inicializar() {
         listadoPersonas.PersonasComboBox.addItemListener((ItemEvent e) -> {
@@ -38,9 +39,9 @@ public final class ControladorListadoPersonas implements Interface {
                 ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).setMode(Boolean.TRUE);
             } else {
                 ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).setMode(Boolean.FALSE);
-                
+
             }
-            
+
         });
         listadoPersonas.EliminarBtn.addActionListener((var evt) -> {
             EliminarBtn(evt);
@@ -51,24 +52,24 @@ public final class ControladorListadoPersonas implements Interface {
         listadoPersonas.NuevoBtn.addActionListener((var evt) -> {
             NuevoBtn(evt);
         });
-        
+
         listadoPersonas.ModificarBtn.addActionListener((var evt) -> {
             ModificarBtn(evt);
         });
-        
+
     }
-    
+
     private void EliminarBtn(ActionEvent evt) {
         int i = listadoPersonas.TablaPersonas.getSelectedRow();
         if (i != -1) {
-             Object o = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
-             ConexionSql.SQL.EliminarPersona(o);
-             ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).RemoveSelection(i);
+            Object o = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
+            ConexionSql.SQL.EliminarPersona(o);
+            ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).RemoveSelection(i);
         } else {
             JOptionPane.showMessageDialog(listadoPersonas, "No se selecciono ninguna Persona", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void MantenimientoCancelarBtn(ActionEvent evt) {
         try {
             ControladorListadoPersonas.listadoPersonas.setClosed(true);
@@ -77,14 +78,14 @@ public final class ControladorListadoPersonas implements Interface {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void NuevoBtn(ActionEvent evt) {
         try {
             nuevaPersona.setClosed(false);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         nuevaPersona.setSize(800, 650);
         nuevaPersona.setMode("I");
         nuevaPersona.foto.setIcon(new ImageIcon(NuevaPersona.class.getClassLoader().getResource("ico.png")));
@@ -101,24 +102,23 @@ public final class ControladorListadoPersonas implements Interface {
             }
         }
         nuevaPersona.setFotofile(null);
-        
-        
+
         nuevaPersona.id_persona.setEditable(true);
         principal.PanelPrincipal.add(nuevaPersona);
         nuevaPersona.setVisible(true);
     }
-    
+
     private void ModificarBtn(ActionEvent evt) {
         try {
             nuevaPersona.setClosed(false);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("wat" + ex.getMessage());
         }
         nuevaPersona.setMode("M");
         int i = listadoPersonas.TablaPersonas.getSelectedRow();
         if (i != -1) {
-           
-            nuevaPersona.setSize(800, 600);
+
+            nuevaPersona.setSize(800, 650);
             Persona P = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
             nuevaPersona.Titulo.setText("Modificar Persona");
             nuevaPersona.id_persona.setText(String.valueOf(P.getId_persona()));
@@ -133,24 +133,24 @@ public final class ControladorListadoPersonas implements Interface {
             nuevaPersona.id_persona.setEditable(false);
             principal.PanelPrincipal.add(nuevaPersona);
             nuevaPersona.setVisible(true);
-            if (nuevaPersona.getFotoFile() == null) {
+            if (nuevaPersona.getFotoFile().getName().equals("null.png")) {
                 nuevaPersona.foto.setIcon(new javax.swing.ImageIcon(NuevaPersona.class.getClassLoader().getResource("ico.png")));
             } else {
                 nuevaPersona.foto.setIcon(P.getIconForAbm(nuevaPersona.foto.getWidth(), nuevaPersona.foto.getHeight()));
             }
-            if (!((TablaPersona)listadoPersonas.TablaPersonas.getModel()).isMode()) {
+            if (!((TablaPersona) listadoPersonas.TablaPersonas.getModel()).isMode()) {
                 nuevaPersona.isEmpleado.setSelected(true);
                 nuevaPersona.id_empleado.setText(String.valueOf(((Empleado) P).getId_empleado()));
                 nuevaPersona.sueldoMens.setText(String.valueOf(((Empleado) P).getSueldoMens()));
-                nuevaPersona.ComboBox.setSelectedItem(((Empleado) P).getTipoEmpleado());
+                nuevaPersona.ComboBox.getModel().setSelectedItem(((Empleado) P).getTipoEmpleado());
                 nuevaPersona.Formulario2.setVisible(true);
             }
-            
+
         } else {
-            
+
             JOptionPane.showMessageDialog(listadoArticulos, "No se selecciono ninguna Persona", "Error", JOptionPane.ERROR_MESSAGE);
-            
+
         }
     }
-    
+
 }

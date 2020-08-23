@@ -115,7 +115,7 @@ public final class ControladorListadoArticulos implements Interface {
             nuevoArticulo.id_articulo.setEditable(false);
             principal.PanelPrincipal.add(nuevoArticulo);
             nuevoArticulo.setVisible(true);
-            if (nuevoArticulo.getFotoFile() == null) {
+            if (nuevoArticulo.getFotoFile().getName().equals("null.png")) {
                 nuevoArticulo.foto.setIcon(new javax.swing.ImageIcon(NuevoArticulo.class.getClassLoader().getResource("ico.png")));
             } else {
                 nuevoArticulo.foto.setIcon(A.getIconForAbm(nuevoArticulo.foto.getWidth(), nuevoArticulo.foto.getHeight()));
