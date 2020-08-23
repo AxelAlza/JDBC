@@ -5,20 +5,21 @@
  */
 package Modelo.Persona;
 
+import Permanencia.ConexionSql;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
-public class TablaPersona extends AbstractTableModel {
+public final class TablaPersona extends AbstractTableModel {
 
     boolean mode;
     ArrayList<Empleado> emp;
     ArrayList<Persona> per;
 
-    public TablaPersona(ArrayList<Empleado> emp, ArrayList<Persona> per) {
-        this.emp = emp;
-        this.per = per;
+    public TablaPersona() {
+        this.emp = ConexionSql.SQL.ListaEmpleados();
+        this.per = ConexionSql.SQL.ListaPersonas();
+        setMode(Boolean.TRUE);
     }
 
     @Override
@@ -160,7 +161,6 @@ public class TablaPersona extends AbstractTableModel {
         return getValueAt(0, c).getClass();
     }
 
-    //Problemas modernos requieren soluciones modernas
     public void AddPersona(Persona persona) {
         per.add(persona);
         fireTableDataChanged();
@@ -171,41 +171,45 @@ public class TablaPersona extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public void DelPersona(int i) {
-        per.remove(i);
-        fireTableDataChanged();
-
+    public void RemoveSelection(int i){
+        if(isMode()){
+            per.remove(i);
+        }
+        else{
+            emp.remove(i);
+        }
     }
 
     public void AddEmpleado(Empleado empleado) {
-        per.add(empleado);
+        emp.add(empleado);
         fireTableDataChanged();
     }
 
     public void SetEmpleado(int i, Empleado empleado) {
-        per.set(i, empleado);
+        emp.set(i, empleado);
         fireTableDataChanged();
     }
 
-    public void DelEmpleado(int i) {
-        per.remove(i);
-        fireTableDataChanged();
+ 
 
-    }
+    public Persona getSelection(int i) {
+        Persona o;
+        if (isMode()) {
+            o = per.get(i);
+        } else {
+            o = emp.get(i);
+        }
 
-    public Persona getPersona(int row) {
-
-        return per.get(row);
-    }
-
-    public Empleado getEmpleado(int row) {
-
-        return emp.get(row);
+        return o;
     }
 
     public void setMode(Boolean b) {
         mode = b;
         fireTableStructureChanged();
+    }
+
+    public boolean isMode() {
+        return mode;
     }
 
 }

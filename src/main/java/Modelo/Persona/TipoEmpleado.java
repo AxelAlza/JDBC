@@ -34,5 +34,10 @@ public class TipoEmpleado {
     public void setTipo_empleado(String tipo_empleado) {
         this.tipo_empleado = tipo_empleado;
     }
+    @Override
+    public String toString() {
+    
+        return tipo_empleado;
+}
 
 }

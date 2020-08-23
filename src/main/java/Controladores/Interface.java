@@ -4,6 +4,7 @@ import Vistas.Articulos.ListadoArticulos;
 import Vistas.Escritorio.Escritorio;
 import Vistas.Articulos.NuevoArticulo;
 import Vistas.Personas.ListadoPersonas;
+import Vistas.Personas.NuevaPersona;
 
 /**
  *
@@ -11,10 +12,11 @@ import Vistas.Personas.ListadoPersonas;
  */
 public interface Interface {
 
-    final static Escritorio principal = new Escritorio();
-    final static ListadoArticulos listadoArticulos = new ListadoArticulos();
-    final static NuevoArticulo nuevoArticulo = new NuevoArticulo();
-    final static ListadoPersonas listadoPersonas = new ListadoPersonas();
+      Escritorio principal = new Escritorio();
+      ListadoArticulos listadoArticulos = new ListadoArticulos();
+      NuevoArticulo nuevoArticulo = new NuevoArticulo();
+      ListadoPersonas listadoPersonas = new ListadoPersonas();
+      NuevaPersona nuevaPersona = new NuevaPersona();
     public void Inicializar();
 
 }

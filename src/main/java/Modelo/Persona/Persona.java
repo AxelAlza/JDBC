@@ -74,29 +74,11 @@ public class Persona {
         return foto;
     }
 
-    public String getBase64foto() {
-        return ProcesadorFotos.Convertir_imagen_a_Base64String(foto);
-    }
-
-    public Icon getIconForAbm(int width, int height) {
-        ImageIcon img_icon = new ImageIcon(foto.toString());
-        Icon icono = new ImageIcon(img_icon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
-
-        return icono;
-    }
-
-    public Icon getIconForTable() {
-        ImageIcon img_icon = new ImageIcon(foto.toString());
-        Icon icono = new ImageIcon(img_icon.getImage().getScaledInstance(50, 50, 1));
-        return icono;
-    }
-
     public void setFoto(File foto) {
         this.foto = foto;
     }
 
     public String getPrimer_nombre() {
-
         return primer_nombre;
     }
 
@@ -143,4 +125,22 @@ public class Persona {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public String getBase64foto() {
+        return ProcesadorFotos.Convertir_imagen_a_Base64String(getFoto());
+    }
+
+    public Icon getIconForAbm(int width, int height) {
+        ImageIcon img_icon = new ImageIcon(getFoto().toString());
+        Icon icono = new ImageIcon(img_icon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+
+        return icono;
+    }
+
+    public Icon getIconForTable() {
+        ImageIcon img_icon = new ImageIcon(getFoto().toString());
+        Icon icono = new ImageIcon(img_icon.getImage().getScaledInstance(50, 50, 1));
+        return icono;
+    }
+
 }

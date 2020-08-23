@@ -87,11 +87,11 @@ public class ControladorNvoArticulo implements Interface {
             if ("I".equals(nuevoArticulo.getMode())) {
 
                 //Este metodo devuelve null si no existe un articulo con el mismo id, si llegase a existir trae el articulo para cambiar los campos 
-                Articulo art = ConexionSql.SQLArticulo.CheckExistente(articulo.getId_articulo());
+                Articulo art = ConexionSql.SQL.CheckExistente(articulo.getId_articulo());
                 ////////////////////////////////////////////////////////////////////
 
                 if (art == null) {
-                    ConexionSql.SQLArticulo.InsertarArticulo(articulo);
+                    ConexionSql.SQL.InsertarArticulo(articulo);
                     ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).AddArticulo(articulo);
                     try {
                         nuevoArticulo.setClosed(true);
@@ -105,7 +105,7 @@ public class ControladorNvoArticulo implements Interface {
                 }
 
             } else if ("M".equals(nuevoArticulo.getMode())) {
-                ConexionSql.SQLArticulo.ModificarArticulo(articulo);
+                ConexionSql.SQL.ModificarArticulo(articulo);
                 ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).SetArticulo(listadoArticulos.TablaArticulos.getSelectedRow(), articulo);
                 try {
                     nuevoArticulo.setClosed(true);

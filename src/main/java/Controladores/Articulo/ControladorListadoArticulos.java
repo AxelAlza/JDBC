@@ -14,8 +14,10 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -48,7 +50,7 @@ public final class ControladorListadoArticulos implements Interface {
         int i = listadoArticulos.TablaArticulos.getSelectedRow();
         if (i != -1) {
             Articulo A = ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).getArticulo(i);
-            ConexionSql.SQLArticulo.EliminarArticulo(A);
+            ConexionSql.SQL.EliminarArticulo(A);
             ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).DelArticulo(i);
         } else {
             JOptionPane.showMessageDialog(listadoArticulos, "No se selecciono ningun articulo", "Error", JOptionPane.ERROR_MESSAGE);
@@ -77,10 +79,13 @@ public final class ControladorListadoArticulos implements Interface {
         nuevoArticulo.foto.setIcon(new ImageIcon(NuevoArticulo.class.getClassLoader().getResource("ico.png")));
         String s = "";
         nuevoArticulo.Titulo.setText("Nuevo Articulo");
-        nuevoArticulo.id_articulo.setText(s);
-        nuevoArticulo.codigo.setText(s);
+        Stream.of(nuevoArticulo.formulario.getComponents())
+                .filter(c -> c instanceof JTextField)
+                .map(c -> ((JTextField) c))
+                .forEach((c) -> {
+                    c.setText(s);
+                });
         nuevoArticulo.descripcion.setText(s);
-        nuevoArticulo.precio.setText(s);
         nuevoArticulo.setFotofile(null);
         nuevoArticulo.id_articulo.setEditable(true);
         principal.PanelPrincipal.add(nuevoArticulo);

@@ -1,4 +1,3 @@
-
 package Modelo.Persona;
 
 import Modelo.Persona.TipoEmpleado;
@@ -21,6 +20,19 @@ public class Empleado extends Persona {
         this.TipoEmpleado = TipoEmpleado;
         this.sueldoMens = sueldoMens;
     }
+
+    public Empleado(int id_empleado, TipoEmpleado TipoEmpleado, int sueldoMens, Persona P) {
+        super(P.getId_persona(), P.getCedula(), P.getFoto(), P.getPrimer_nombre(), P.getSegundo_nombre(), P.getPrimer_apellido(), P.getSegundo_apellido(), P.getTelefono(), P.getDireccion());
+        this.id_empleado = id_empleado;
+        this.TipoEmpleado = TipoEmpleado;
+        this.sueldoMens = sueldoMens;
+    }
+
+    public Empleado() {
+
+    }
+
+    
 
     public TipoEmpleado getTipoEmpleado() {
         return TipoEmpleado;

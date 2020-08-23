@@ -9,6 +9,7 @@ import Controladores.Articulo.ControladorListadoArticulos;
 import Controladores.Articulo.ControladorNvoArticulo;
 import Controladores.Escritorio.ControladorEscritorio;
 import Controladores.Personas.ControladorListadoPersonas;
+import Controladores.Personas.ControladorNuevaPersona;
 
 /**
  *
@@ -20,12 +21,14 @@ public class Megacontrol {
     ControladorEscritorio CtrlE;
     ControladorListadoArticulos CtrlL;
     ControladorListadoPersonas CtrlP;
+    ControladorNuevaPersona CtrlNP;
 
     public Megacontrol() {
         this.CtrlL = new ControladorListadoArticulos();
         this.CtrlE = new ControladorEscritorio();
         this.CtrlN = new ControladorNvoArticulo();
         this.CtrlP = new ControladorListadoPersonas();
+        this.CtrlNP = new ControladorNuevaPersona();
 
     }
 

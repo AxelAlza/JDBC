@@ -11,8 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Vector;
 
 /**
  *
@@ -39,7 +38,27 @@ public abstract class ConexionSql {
         return con;
     }
 
-    public static class SQLArticulo extends ConexionSql {
+    public static class SQL extends ConexionSql {
+
+        public static ArrayList<TipoEmpleado> ListaTipoEmpleados() {
+            Connection con = Conectar();
+            var tipoempleados = new ArrayList<TipoEmpleado>();
+            try {
+                String sql = "SELECT * FROM tipos_empleados";
+                PreparedStatement puntero;
+                puntero = con.prepareStatement(sql);
+                ResultSet res = puntero.executeQuery();
+                while (res.next()) {
+                    TipoEmpleado tipo = new TipoEmpleado(res.getInt("id_tipo_empleado"), res.getString("tipo_empleado"));
+                    tipoempleados.add(tipo);
+
+                }
+            } catch (SQLException e) {
+                System.out.println("Todo mal : " + e.getMessage());
+            }
+
+            return tipoempleados;
+        }
 
         public static Articulo CheckExistente(int id_articulo) {
             Articulo art = null;
@@ -65,7 +84,7 @@ public abstract class ConexionSql {
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(ConexionSql.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Todo mal : " + ex.getMessage());
             }
 
             return art;
@@ -82,7 +101,7 @@ public abstract class ConexionSql {
                 puntero.executeUpdate();
 
             } catch (SQLException ex) {
-                Logger.getLogger(ConexionSql.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Todo mal : " + ex.getMessage());
             }
 
         }
@@ -133,7 +152,6 @@ public abstract class ConexionSql {
             Connection con = Conectar();
             var empleados = new ArrayList<Empleado>();
             try {
-
                 String sql = "SELECT * FROM personas inner join empleados on personas.id_persona = empleados.id_persona inner join tipos_empleados on empleados.id_tipo = tipos_empleados.id_tipo_empleado;";
                 PreparedStatement puntero;
                 puntero = con.prepareStatement(sql);
@@ -229,6 +247,52 @@ public abstract class ConexionSql {
             return Articulos;
         }
 
-    }
+        public static void EliminarPersona(Object o) {
+            Connection con = Conectar();
+            //Si el objeto recibido como parametro es una persona, proceder a borrarla, de otra forma borrar un empleado
+            if (o instanceof Persona) {
+                try {
+                    var P = ((Persona) o);
+                    String Sql = "SELECT * FROM empleados where id_persona =?";
+                    PreparedStatement puntero;
+                    puntero = con.prepareStatement(Sql);
+                    puntero.setInt(1, P.getId_persona());
+                    ResultSet res = puntero.executeQuery();
+                    ///Si existe un empleado al que corresponda la persona a eliminar, borrar antes al empleado y luego a la persona, de otra forma solo borrar la persona
+                    if (res.next() == false) {
+                        Sql = "DELETE FROM personas WHERE id_persona = ?";
+                        puntero = con.prepareStatement(Sql);
+                        puntero.setInt(1, P.getId_persona());
+                        puntero.executeUpdate();
+                    } else {
+                        Sql = "DELETE FROM empleados WHERE id_persona = ?";
+                        puntero = con.prepareStatement(Sql);
+                        puntero.setInt(1, P.getId_persona());
+                        puntero.executeUpdate();
+                        Sql = "DELETE FROM personas WHERE id_persona = ?";
+                        puntero = con.prepareStatement(Sql);
+                        puntero.setInt(1, P.getId_persona());
+                        puntero.executeUpdate();
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(" ERROR AL EJECUTAR LA CONSULTA :: " + ex.getMessage());
+                }
 
+            } else {
+                try {
+                    var E = ((Empleado) o);
+                    String Sql = "DELETE FROM empleados WHERE id_persona = ?";
+                    PreparedStatement puntero;
+                    puntero = con.prepareStatement(Sql);
+                    puntero.setInt(1, E.getId_empleado());
+                    puntero.executeUpdate();
+                } catch (SQLException ex) {
+                    System.out.println(" ERROR AL EJECUTAR LA CONSULTA :: " + ex.getMessage());
+                }
+
+            }
+
+        }
+
+    }
 }

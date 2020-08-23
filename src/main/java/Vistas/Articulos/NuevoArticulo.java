@@ -52,7 +52,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         ConfirmarBtn = new javax.swing.JButton();
         CancelarBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        formulario = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         codigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -93,7 +93,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         java.awt.GridBagLayout jPanel3Layout = new java.awt.GridBagLayout();
         jPanel3Layout.columnWidths = new int[] {0, 15, 0};
         jPanel3Layout.rowHeights = new int[] {0, 18, 0, 18, 0, 18, 0, 18, 0};
-        jPanel3.setLayout(jPanel3Layout);
+        formulario.setLayout(jPanel3Layout);
 
         jLabel4.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jLabel4.setText("Codigo:");
@@ -103,7 +103,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 30);
-        jPanel3.add(jLabel4, gridBagConstraints);
+        formulario.add(jLabel4, gridBagConstraints);
 
         codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +116,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel3.add(codigo, gridBagConstraints);
+        formulario.add(codigo, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jLabel9.setText("ID:");
@@ -126,7 +126,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 30);
-        jPanel3.add(jLabel9, gridBagConstraints);
+        formulario.add(jLabel9, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jLabel5.setText("Descripcion:");
@@ -138,7 +138,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 30);
-        jPanel3.add(jLabel5, gridBagConstraints);
+        formulario.add(jLabel5, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jLabel8.setText("Fecha Fabricación:");
@@ -148,7 +148,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 30);
-        jPanel3.add(jLabel8, gridBagConstraints);
+        formulario.add(jLabel8, gridBagConstraints);
 
         id_articulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,7 +161,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel3.add(id_articulo, gridBagConstraints);
+        formulario.add(id_articulo, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jLabel3.setText("Precio:");
@@ -171,7 +171,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 30);
-        jPanel3.add(jLabel3, gridBagConstraints);
+        formulario.add(jLabel3, gridBagConstraints);
 
         descripcion.setColumns(20);
         descripcion.setRows(5);
@@ -181,14 +181,14 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel3.add(jScrollPane2, gridBagConstraints);
+        formulario.add(jScrollPane2, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel3.add(precio, gridBagConstraints);
+        formulario.add(precio, gridBagConstraints);
 
         fecha_fabricacion.setToolTipText("Formato: dias/mes/año");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -196,9 +196,9 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel3.add(fecha_fabricacion, gridBagConstraints);
+        formulario.add(fecha_fabricacion, gridBagConstraints);
 
-        jPanel2.add(jPanel3, java.awt.BorderLayout.LINE_START);
+        jPanel2.add(formulario, java.awt.BorderLayout.LINE_START);
         jPanel2.add(jSeparator1, java.awt.BorderLayout.PAGE_START);
         jPanel2.add(jSeparator2, java.awt.BorderLayout.PAGE_END);
 
@@ -266,6 +266,7 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
     public javax.swing.JTextField codigo;
     public javax.swing.JTextArea descripcion;
     public javax.swing.JTextField fecha_fabricacion;
+    public javax.swing.JPanel formulario;
     public javax.swing.JLabel foto;
     public javax.swing.JTextField id_articulo;
     private javax.swing.JLabel jLabel1;
@@ -276,7 +277,6 @@ public class NuevoArticulo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    public javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;

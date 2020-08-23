@@ -50,8 +50,8 @@ public final class ControladorEscritorio implements Interface {
         listadoArticulos.setSize(800, 600);
         principal.PanelPrincipal.add(listadoArticulos);
         listadoArticulos.setResizable(true);
-        TablaArticulo tbl = new TablaArticulo(ConexionSql.SQLArticulo.ListaArticulos());
-        listadoArticulos.TablaArticulos.setModel(tbl);
+
+    listadoArticulos.TablaArticulos.setModel(new TablaArticulo());
         listadoArticulos.setVisible(true);
 
     }
@@ -63,13 +63,10 @@ public final class ControladorEscritorio implements Interface {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
         listadoPersonas.setSize(800, 600);
-       
+
         principal.PanelPrincipal.add(listadoPersonas);
         listadoPersonas.setResizable(true);
-        TablaPersona tbl = new TablaPersona(ConexionSql.SQLArticulo.ListaEmpleados(), ConexionSql.SQLArticulo.ListaPersonas());
-        tbl.setMode(Boolean.TRUE);
-        listadoPersonas.TablaPersonas.setModel(tbl);
-        
+        listadoPersonas.TablaPersonas.setModel(new TablaPersona());
         listadoPersonas.setVisible(true);
 
     }

@@ -1,18 +1,18 @@
 package Modelo.Articulo;
 
 import Modelo.Articulo.Articulo;
+import Permanencia.ConexionSql;
 import java.util.ArrayList;
-import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author Axel Alza
  */
-public class TablaArticulo extends AbstractTableModel {
+public final class TablaArticulo extends AbstractTableModel {
 
-    public TablaArticulo(ArrayList<Articulo> art) {
-        this.art = art;
+    public TablaArticulo() {
+        this.art = ConexionSql.SQL.ListaArticulos();
     }
 
     ArrayList<Articulo> art;
