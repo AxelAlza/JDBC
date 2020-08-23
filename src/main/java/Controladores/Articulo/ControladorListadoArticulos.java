@@ -50,7 +50,7 @@ public final class ControladorListadoArticulos implements Interface {
         int i = listadoArticulos.TablaArticulos.getSelectedRow();
         if (i != -1) {
             Articulo A = ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).getArticulo(i);
-            ConexionSql.SQL.EliminarArticulo(A);
+            ConexionSql.SQLArtiuclo.EliminarArticulo(A);
             ((TablaArticulo) listadoArticulos.TablaArticulos.getModel()).DelArticulo(i);
         } else {
             JOptionPane.showMessageDialog(listadoArticulos, "No se selecciono ningun articulo", "Error", JOptionPane.ERROR_MESSAGE);

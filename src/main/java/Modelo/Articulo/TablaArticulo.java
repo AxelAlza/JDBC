@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 public final class TablaArticulo extends AbstractTableModel {
 
     public TablaArticulo() {
-        this.art = ConexionSql.SQL.ListaArticulos();
+        this.art = ConexionSql.SQLArtiuclo.ListaArticulos();
     }
 
     ArrayList<Articulo> art;

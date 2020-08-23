@@ -17,8 +17,8 @@ public final class TablaPersona extends AbstractTableModel {
     ArrayList<Persona> per;
 
     public TablaPersona() {
-        this.emp = ConexionSql.SQL.ListaEmpleados();
-        this.per = ConexionSql.SQL.ListaPersonas();
+        this.emp = ConexionSql.SQLPersona.ListaEmpleados();
+        this.per = ConexionSql.SQLPersona.ListaPersonas();
         setMode(Boolean.TRUE);
     }
 

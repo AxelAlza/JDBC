@@ -63,7 +63,7 @@ public final class ControladorListadoPersonas implements Interface {
         int i = listadoPersonas.TablaPersonas.getSelectedRow();
         if (i != -1) {
             Object o = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
-            ConexionSql.SQL.EliminarPersona(o);
+            ConexionSql.SQLPersona.EliminarPersona(o);
             ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).RemoveSelection(i);
         } else {
             JOptionPane.showMessageDialog(listadoPersonas, "No se selecciono ninguna Persona", "Error", JOptionPane.ERROR_MESSAGE);
@@ -117,7 +117,6 @@ public final class ControladorListadoPersonas implements Interface {
         nuevaPersona.setMode("M");
         int i = listadoPersonas.TablaPersonas.getSelectedRow();
         if (i != -1) {
-
             nuevaPersona.setSize(800, 650);
             Persona P = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
             nuevaPersona.Titulo.setText("Modificar Persona");
@@ -145,12 +144,8 @@ public final class ControladorListadoPersonas implements Interface {
                 nuevaPersona.ComboBox.getModel().setSelectedItem(((Empleado) P).getTipoEmpleado());
                 nuevaPersona.Formulario2.setVisible(true);
             }
-
         } else {
-
             JOptionPane.showMessageDialog(listadoArticulos, "No se selecciono ninguna Persona", "Error", JOptionPane.ERROR_MESSAGE);
-
         }
     }
-
 }
