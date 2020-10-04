@@ -5,14 +5,9 @@
  */
 package Main;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import java.awt.BorderLayout;
-import java.awt.Container;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import Permanencia.ConexionSql;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,27 +16,12 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class MainPruebas {
 
     public static void main(String args[]) {
+        
         try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (UnsupportedLookAndFeelException ex) {
-            System.err.println("Nope");
+            Utils.UtilesExcel.writeExcel(ConexionSql.SQLPersona.ListaEmpleados());
+        } catch (Exception ex) {
+            Logger.getLogger(MainPruebas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JFrame frame = new JFrame("ArrayListComboBoxModel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JButton btn1 = new JButton();
-
-        JComboBox comboBox = new JComboBox();
-
-        Container contentPane = frame.getContentPane();
-        contentPane.add(comboBox, BorderLayout.NORTH);
-
-        btn1.addActionListener((var e) -> {
-            System.out.println(comboBox.getModel().getSelectedItem());
-        });
-        contentPane.add(btn1, BorderLayout.SOUTH);
-        frame.setSize(300, 225);
-        frame.setVisible(true);
-
     }
 
 }

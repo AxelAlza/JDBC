@@ -23,6 +23,7 @@ public class ListadoPersonas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPersonas = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        xlsBtn = new javax.swing.JButton();
         NuevoBtn = new javax.swing.JButton();
         ModificarBtn = new javax.swing.JButton();
         EliminarBtn = new javax.swing.JButton();
@@ -56,6 +57,12 @@ public class ListadoPersonas extends javax.swing.JInternalFrame {
         flowLayout1.setAlignOnBaseline(true);
         jPanel1.setLayout(flowLayout1);
 
+        xlsBtn.setText("Descargar xls");
+        xlsBtn.setAlignmentY(0.0F);
+        xlsBtn.setHideActionText(true);
+        xlsBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel1.add(xlsBtn);
+
         NuevoBtn.setText("Nuevo");
         jPanel1.add(NuevoBtn);
 
@@ -74,7 +81,7 @@ public class ListadoPersonas extends javax.swing.JInternalFrame {
         flowLayout2.setAlignOnBaseline(true);
         jPanel2.setLayout(flowLayout2);
 
-        PersonasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Personas", "Empleados" }));
+        PersonasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Empleados" }));
         jPanel2.add(PersonasComboBox);
 
         jLabel1.setText("Seleccionar");
@@ -97,5 +104,6 @@ public class ListadoPersonas extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton xlsBtn;
     // End of variables declaration//GEN-END:variables
 }

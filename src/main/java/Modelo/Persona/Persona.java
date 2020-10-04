@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
  *
  * @author Axel Alza
  */
-public class Persona {
+public abstract class Persona {
 
     private int id_persona;
     private int cedula;

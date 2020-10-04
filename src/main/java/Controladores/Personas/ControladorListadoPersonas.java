@@ -7,7 +7,6 @@ package Controladores.Personas;
 
 import Controladores.Interface;
 import Modelo.Persona.Empleado;
-import Modelo.Persona.Persona;
 import Modelo.Persona.TablaPersona;
 import Permanencia.ConexionSql;
 import Vistas.Personas.NuevaPersona;
@@ -34,14 +33,7 @@ public final class ControladorListadoPersonas implements Interface {
     @Override
     public void Inicializar() {
         listadoPersonas.PersonasComboBox.addItemListener((ItemEvent e) -> {
-            var combo = listadoPersonas.PersonasComboBox.getModel().getSelectedItem().toString();
-            if ("Personas".equals(combo)) {
-                ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).setMode(Boolean.TRUE);
-            } else {
-                ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).setMode(Boolean.FALSE);
-
-            }
-
+            //Para hacer por si se hacen mas categorizaciones      
         });
         listadoPersonas.EliminarBtn.addActionListener((var evt) -> {
             EliminarBtn(evt);
@@ -52,7 +44,6 @@ public final class ControladorListadoPersonas implements Interface {
         listadoPersonas.NuevoBtn.addActionListener((var evt) -> {
             NuevoBtn(evt);
         });
-
         listadoPersonas.ModificarBtn.addActionListener((var evt) -> {
             ModificarBtn(evt);
         });
@@ -62,7 +53,7 @@ public final class ControladorListadoPersonas implements Interface {
     private void EliminarBtn(ActionEvent evt) {
         int i = listadoPersonas.TablaPersonas.getSelectedRow();
         if (i != -1) {
-            Object o = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
+            Empleado o = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
             ConexionSql.SQLPersona.EliminarPersona(o);
             ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).RemoveSelection(i);
         } else {
@@ -85,7 +76,6 @@ public final class ControladorListadoPersonas implements Interface {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         nuevaPersona.setSize(800, 650);
         nuevaPersona.setMode("I");
         nuevaPersona.foto.setIcon(new ImageIcon(NuevaPersona.class.getClassLoader().getResource("ico.png")));
@@ -102,7 +92,6 @@ public final class ControladorListadoPersonas implements Interface {
             }
         }
         nuevaPersona.setFotofile(null);
-
         nuevaPersona.id_persona.setEditable(true);
         principal.PanelPrincipal.add(nuevaPersona);
         nuevaPersona.setVisible(true);
@@ -118,7 +107,7 @@ public final class ControladorListadoPersonas implements Interface {
         int i = listadoPersonas.TablaPersonas.getSelectedRow();
         if (i != -1) {
             nuevaPersona.setSize(800, 650);
-            Persona P = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
+            Empleado P = ((TablaPersona) listadoPersonas.TablaPersonas.getModel()).getSelection(i);
             nuevaPersona.Titulo.setText("Modificar Persona");
             nuevaPersona.id_persona.setText(String.valueOf(P.getId_persona()));
             nuevaPersona.cedula.setText(String.valueOf(P.getCedula()));
@@ -130,20 +119,18 @@ public final class ControladorListadoPersonas implements Interface {
             nuevaPersona.direccion.setText(P.getDireccion());
             nuevaPersona.setFotofile(P.getFoto());
             nuevaPersona.id_persona.setEditable(false);
+            nuevaPersona.id_empleado.setText(String.valueOf(P.getId_empleado()));
+            nuevaPersona.sueldoMens.setText(String.valueOf(P.getSueldoMens()));
+            nuevaPersona.ComboBox.getModel().setSelectedItem(P.getTipoEmpleado().getTipo_empleado());
             principal.PanelPrincipal.add(nuevaPersona);
+            
             nuevaPersona.setVisible(true);
             if (nuevaPersona.getFotoFile().getName().equals("null.png")) {
                 nuevaPersona.foto.setIcon(new javax.swing.ImageIcon(NuevaPersona.class.getClassLoader().getResource("ico.png")));
             } else {
                 nuevaPersona.foto.setIcon(P.getIconForAbm(nuevaPersona.foto.getWidth(), nuevaPersona.foto.getHeight()));
             }
-            if (!((TablaPersona) listadoPersonas.TablaPersonas.getModel()).isMode()) {
-                nuevaPersona.isEmpleado.setSelected(true);
-                nuevaPersona.id_empleado.setText(String.valueOf(((Empleado) P).getId_empleado()));
-                nuevaPersona.sueldoMens.setText(String.valueOf(((Empleado) P).getSueldoMens()));
-                nuevaPersona.ComboBox.getModel().setSelectedItem(((Empleado) P).getTipoEmpleado());
-                nuevaPersona.Formulario2.setVisible(true);
-            }
+           
         } else {
             JOptionPane.showMessageDialog(listadoArticulos, "No se selecciono ninguna Persona", "Error", JOptionPane.ERROR_MESSAGE);
         }

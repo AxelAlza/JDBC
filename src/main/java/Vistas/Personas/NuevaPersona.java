@@ -69,7 +69,6 @@ public class NuevaPersona extends javax.swing.JInternalFrame {
         telefono = new javax.swing.JTextField();
         direccion = new javax.swing.JTextField();
         segundo_nombre = new javax.swing.JTextField();
-        isEmpleado = new javax.swing.JCheckBox();
         jSeparator9 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         foto = new javax.swing.JLabel();
@@ -252,13 +251,6 @@ public class NuevaPersona extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         Formulario.add(segundo_nombre, gridBagConstraints);
-
-        isEmpleado.setText("Es empleado?");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 3;
-        Formulario.add(isEmpleado, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -403,7 +395,6 @@ public class NuevaPersona extends javax.swing.JInternalFrame {
     public javax.swing.JLabel foto;
     public javax.swing.JTextField id_empleado;
     public javax.swing.JTextField id_persona;
-    public javax.swing.JCheckBox isEmpleado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

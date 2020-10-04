@@ -70,6 +70,14 @@
         </Constraint>
       </Constraints>
       <SubComponents>
+        <Component class="javax.swing.JButton" name="xlsBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Descargar xls"/>
+            <Property name="alignmentY" type="float" value="0.0"/>
+            <Property name="hideActionText" type="boolean" value="true"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JButton" name="NuevoBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo"/>
@@ -174,7 +182,23 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="7_NuevoBtn">
+            <CodeExpression id="7_xlsBtn">
+              <CodeVariable name="xlsBtn" type="8194" declaredType="javax.swing.JButton"/>
+              <ExpressionOrigin>
+                <ExpressionProvider type="ComponentRef">
+                  <ComponentRef name="xlsBtn"/>
+                </ExpressionProvider>
+              </ExpressionOrigin>
+            </CodeExpression>
+          </Parameters>
+        </CodeStatement>
+        <CodeStatement>
+          <CodeExpression id="6_jPanel1"/>
+          <StatementProvider type="CodeMethod">
+            <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
+          </StatementProvider>
+          <Parameters>
+            <CodeExpression id="8_NuevoBtn">
               <CodeVariable name="NuevoBtn" type="8193" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
@@ -190,7 +214,7 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="8_ModificarBtn">
+            <CodeExpression id="9_ModificarBtn">
               <CodeVariable name="ModificarBtn" type="8193" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
@@ -206,7 +230,7 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="9_EliminarBtn">
+            <CodeExpression id="10_EliminarBtn">
               <CodeVariable name="EliminarBtn" type="8193" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
@@ -222,7 +246,7 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="10_MantenimientoCancelarBtn">
+            <CodeExpression id="11_MantenimientoCancelarBtn">
               <CodeVariable name="MantenimientoCancelarBtn" type="8193" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
@@ -243,11 +267,8 @@
       <SubComponents>
         <Component class="javax.swing.JComboBox" name="PersonasComboBox">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Personas"/>
-                <StringItem index="1" value="Empleados"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] {&quot;Empleados&quot; })" type="code"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -263,14 +284,14 @@
       </SubComponents>
       <LayoutCode>
         <CodeStatement>
-          <CodeExpression id="11_flowLayout2">
+          <CodeExpression id="12_flowLayout2">
             <CodeVariable name="flowLayout2" type="4096" declaredType="java.awt.FlowLayout"/>
             <ExpressionOrigin>
               <ExpressionProvider type="CodeConstructor">
                 <CodeConstructor class="java.awt.FlowLayout" parameterTypes="int"/>
               </ExpressionProvider>
               <Parameters>
-                <CodeExpression id="12">
+                <CodeExpression id="13">
                   <ExpressionOrigin>
                     <Value type="int" value="4"/>
                   </ExpressionOrigin>
@@ -279,19 +300,19 @@
             </ExpressionOrigin>
           </CodeExpression>
           <StatementProvider type="CodeExpression">
-            <CodeExpression id="11_flowLayout2"/>
+            <CodeExpression id="12_flowLayout2"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="12"/>
+            <CodeExpression id="13"/>
           </Parameters>
         </CodeStatement>
         <CodeStatement>
-          <CodeExpression id="11_flowLayout2"/>
+          <CodeExpression id="12_flowLayout2"/>
           <StatementProvider type="CodeMethod">
             <CodeMethod name="setAlignOnBaseline" class="java.awt.FlowLayout" parameterTypes="boolean"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="13">
+            <CodeExpression id="14">
               <ExpressionOrigin>
                 <Value type="boolean" value="true"/>
               </ExpressionOrigin>
@@ -299,7 +320,7 @@
           </Parameters>
         </CodeStatement>
         <CodeStatement>
-          <CodeExpression id="14_jPanel2">
+          <CodeExpression id="15_jPanel2">
             <CodeVariable name="jPanel2" type="8194" declaredType="javax.swing.JPanel"/>
             <ExpressionOrigin>
               <ExpressionProvider type="ComponentRef">
@@ -311,16 +332,16 @@
             <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="11_flowLayout2"/>
+            <CodeExpression id="12_flowLayout2"/>
           </Parameters>
         </CodeStatement>
         <CodeStatement>
-          <CodeExpression id="14_jPanel2"/>
+          <CodeExpression id="15_jPanel2"/>
           <StatementProvider type="CodeMethod">
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="15_PersonasComboBox">
+            <CodeExpression id="16_PersonasComboBox">
               <CodeVariable name="PersonasComboBox" type="8193" declaredType="javax.swing.JComboBox"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
@@ -331,12 +352,12 @@
           </Parameters>
         </CodeStatement>
         <CodeStatement>
-          <CodeExpression id="14_jPanel2"/>
+          <CodeExpression id="15_jPanel2"/>
           <StatementProvider type="CodeMethod">
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="16_jLabel1">
+            <CodeExpression id="17_jLabel1">
               <CodeVariable name="jLabel1" type="8194" declaredType="javax.swing.JLabel"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">

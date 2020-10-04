@@ -8,7 +8,6 @@ package Controladores.Escritorio;
 import Controladores.Interface;
 import Modelo.Articulo.TablaArticulo;
 import Modelo.Persona.TablaPersona;
-import Permanencia.ConexionSql;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
