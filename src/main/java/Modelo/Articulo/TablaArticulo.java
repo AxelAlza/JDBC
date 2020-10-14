@@ -5,28 +5,31 @@ import Permanencia.ConexionSql;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Axel Alza
- */
-public final class TablaArticulo extends AbstractTableModel {
 
-    public TablaArticulo() {
-        this.art = ConexionSql.SQLArtiuclo.ListaArticulos();
-    }
+//Todos estos son metodos, que usa el jtable
+
+public final class TablaArticulo extends AbstractTableModel {
 
     ArrayList<Articulo> art;
 
+    public TablaArticulo() {
+        this.art = ConexionSql.SQLArtiuclo.ListaArticulos();
+        //Trae los articulos de la base de datos
+    }
+
     @Override
+    // Devuelve el numero de columnas de cada tupla de la BD
     public int getColumnCount() {
         return 6;
     }
 
+    // Devuelve el numero de tuplas de la bd, informacion que el Jtable necesita
     @Override
     public int getRowCount() {
         return art.size();
     }
 
+    // Devuelve el nombre de cada columna, para que el Jtable lo muestre
     @Override
     public String getColumnName(int ColumnIndex) {
         String ColumnName = null;
@@ -53,6 +56,9 @@ public final class TablaArticulo extends AbstractTableModel {
         return ColumnName;
     }
 
+    // Devuelve el valor de cierta columna en cierta fila
+    
+  
     @Override
     public Object getValueAt(int row, int col) {
         Object ret = null;
@@ -79,12 +85,15 @@ public final class TablaArticulo extends AbstractTableModel {
         return ret;
     }
 
+    // Devuelve el tipo de dato de la columna
     @Override
     public Class getColumnClass(int c) {
         return getValueAt(0, c).getClass();
     }
 
     //Problemas modernos requieren soluciones modernas
+    //Estos metodos son para agregar Articulos al modelo que jtable usa y luego que se refresque
+    
     public void AddArticulo(Articulo articulo) {
         art.add(articulo);
         fireTableDataChanged();

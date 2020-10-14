@@ -43,9 +43,7 @@ public class ControladorNvoArticulo implements Interface {
         });
         nuevoArticulo.foto.addMouseListener(new MouseAdapter() {
 
-            //Solo quiero un metodo del mouse listener que es el mouse clicked, porque tengo que sobrescribir los demas!?
-            //Hay alguna forma de no tener que hacer esto?
-            //Actualizacion: Solucionado!
+            //Codigo copiado del profe y de stack overflow jaja
             @Override
             public void mouseClicked(MouseEvent e) {
 
@@ -75,7 +73,7 @@ public class ControladorNvoArticulo implements Interface {
     }
 
     private void ConfirmarArticuloBtn(ActionEvent evt) {
-
+           
         if (Validar()) {
             Articulo articulo = new Articulo();
             articulo.setFoto(nuevoArticulo.getFotoFile());
@@ -84,6 +82,8 @@ public class ControladorNvoArticulo implements Interface {
             articulo.setDescripcion(nuevoArticulo.descripcion.getText());
             articulo.setPrecio(Float.parseFloat(nuevoArticulo.precio.getText()));
             articulo.setFecha_fabricacion(nuevoArticulo.fecha_fabricacion.getText());
+            
+            //Checkeo el modo de la interfaz, "I" = Insertar
             if ("I".equals(nuevoArticulo.getMode())) {
 
                 //Este metodo devuelve null si no existe un articulo con el mismo id, si llegase a existir trae el articulo para cambiar los campos 
@@ -128,6 +128,7 @@ public class ControladorNvoArticulo implements Interface {
         }
     }
 
+    //Este metodo cambia toda la interfaz segun el articulo
     private void ModoModificar(Articulo art) {
         nuevoArticulo.Titulo.setText("Modificar Articulo");
         nuevoArticulo.id_articulo.setText(String.valueOf(art.getId_articulo()));

@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Modelo;
+
+package Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,13 +7,11 @@ import java.io.IOException;
 import java.util.Base64;
 import org.apache.commons.io.FileUtils;
 
-/**
- *
- * @author Axel Alza
- */
+
 public class ProcesadorFotos {
 
-    //Tuve que importar una libreria commons io para esta cosa va a estar en dependencias.
+    //Tuve que importar una libreria para que esto funcionase, se llama commons-io-2-7.jar
+    
     public static File Convertir_Base64String_a_imagen(String base64String) {
 
         File archivo_salida;

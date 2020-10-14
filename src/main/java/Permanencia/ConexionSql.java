@@ -3,7 +3,7 @@ package Permanencia;
 import Modelo.Articulo.Articulo;
 import Modelo.Persona.Empleado;
 import Modelo.Persona.TipoEmpleado;
-import Modelo.ProcesadorFotos;
+import Utils.ProcesadorFotos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public abstract class ConexionSql {
         String server = "localhost:" + puerto;
         String base = "empresa";
         String user = "root";
-        String pass = "Nadadenada1";
+        String pass = "";
         try {
 
             con = DriverManager.getConnection("jdbc:mysql://"
@@ -126,6 +126,7 @@ public abstract class ConexionSql {
 
         }
 
+        //// Usado por la clase TablaArticulo
         public static ArrayList ListaArticulos() {
             Connection con = Conectar();
             ArrayList<Articulo> Articulos = new ArrayList<>();

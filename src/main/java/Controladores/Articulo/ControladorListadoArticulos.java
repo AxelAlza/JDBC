@@ -30,6 +30,10 @@ public final class ControladorListadoArticulos implements Interface {
     }
 
     public void Inicializar() {
+        //Inicializo los Action listeners que estan atentos a cuando clickeas en los botones,
+        //Puedo acceder a los botones de los listados por que especifique que todos los elementos de la interfaz
+        //Sean publicos y asi implementar el modelo MVC
+        
         listadoArticulos.EliminarBtn.addActionListener((var evt) -> {
             EliminarBtn(evt);
         });
@@ -77,8 +81,11 @@ public final class ControladorListadoArticulos implements Interface {
         nuevoArticulo.setSize(800, 600);
         nuevoArticulo.setMode("I");
         nuevoArticulo.foto.setIcon(new ImageIcon(NuevoArticulo.class.getClassLoader().getResource("ico.png")));
-        String s = "";
         nuevoArticulo.Titulo.setText("Nuevo Articulo");
+        
+        //Vacio cada campo de texto que haya en cada formulario, es necesario por si entraste a modificar un producto antes, 
+        //Ya que cada modo (Modificar, Insertar) comparten la misma interfaz
+        String s = "";
         Stream.of(nuevoArticulo.formulario.getComponents())
                 .filter(c -> c instanceof JTextField)
                 .map(c -> ((JTextField) c))
@@ -100,6 +107,8 @@ public final class ControladorListadoArticulos implements Interface {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Setear el modo de la interfaz a modificar
+        //Es un metodo que implemente en la vista
         nuevoArticulo.setMode("M");
         int i = listadoArticulos.TablaArticulos.getSelectedRow();
         if (i != -1) {

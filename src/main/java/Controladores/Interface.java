@@ -12,11 +12,12 @@ import Vistas.Personas.NuevaPersona;
  */
 public interface Interface {
 
-      Escritorio principal = new Escritorio();
-      ListadoArticulos listadoArticulos = new ListadoArticulos();
-      NuevoArticulo nuevoArticulo = new NuevoArticulo();
-      ListadoPersonas listadoPersonas = new ListadoPersonas();
-      NuevaPersona nuevaPersona = new NuevaPersona();
+    Escritorio principal = new Escritorio();
+    ListadoArticulos listadoArticulos = new ListadoArticulos();
+    NuevoArticulo nuevoArticulo = new NuevoArticulo();
+    ListadoPersonas listadoPersonas = new ListadoPersonas();
+    NuevaPersona nuevaPersona = new NuevaPersona();
+
     public void Inicializar();
 
 }
